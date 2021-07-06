@@ -1,0 +1,15 @@
+{
+    "name": "scg_fm/php-mvc-fw",
+    "autoload": {
+        "psr-4": {
+            "core_fw\\": "./"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.3",
+        "psr/container": "^2.0",
+      "ext-pdo": "*",
+        "phpmailer/phpmailer": "^6.5",
+      "ext-sodium": "*"
+    }
+}
