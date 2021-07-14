@@ -9,23 +9,9 @@ class Database{
     public \PDO $pdo;
     public string $name;
 
-    public function __construct()
+    public function __construct(array $config)
     {
-        $dotenv = Dotenv::createImmutable(dirname(__DIR__));
-        $dotenv->load();
-
-        $config = [
-            'db' => [
-                'dsn' => $_ENV['DB_DSN'],
-                'user' => $_ENV['DB_USER'],
-                'password' => $_ENV['DB_PASSWORD']
-            ]
-        ];
-        //print_r($config);
-        $dsn = $config['db']['dsn'] ?? '';
-        $user = $config['db']['user'] ?? '';
-        $password = $config['db']['password'] ?? '';
-        $this->pdo = new \PDO($dsn, $user, $password);
+        $this->pdo = new \PDO($config['db']['dsn'], $config['db']['user'], $config['db']['password']);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 

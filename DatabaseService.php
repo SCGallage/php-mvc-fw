@@ -8,6 +8,8 @@ use ReflectionProperty;
 class DatabaseService
 {
     protected PDO $pdo;
+    const FETCH_COUNT = 0;
+    const FETCH_ALL = 1;
 
     /**
      * DatabaseService constructor.
@@ -83,7 +85,7 @@ class DatabaseService
         //return true;
     }
 
-    function select($tablename, $columns, $conditions)
+    function select($tablename, $columns, $conditions, $flag)
     {
 
         if (is_array($columns) && !empty($columns)) {
@@ -102,7 +104,12 @@ class DatabaseService
         }
         echo $sql;
         $stmt = $this->pdo->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($flag === DatabaseService::FETCH_COUNT)
+            return $stmt->rowCount();
+        if ($flag === DatabaseService::FETCH_ALL)
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         //return $sql;
 
