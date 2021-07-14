@@ -72,9 +72,10 @@ class Router
      * @param array $params
      * @return array|false|string|string[]
      */
-    public function renderView($view, $params = [])
+    public function renderView($view, $title, $params = [])
     {
         $layoutContent = $this->layoutContent();
+        $layoutContent = str_replace('{{title}}', $title, $layoutContent);
         $viewContent = $this->renderOnlyView($view, $params);
         include_once Application::$ROOT_DIR . "/views/$view.php";
         return str_replace('{{content}}', $viewContent, $layoutContent);

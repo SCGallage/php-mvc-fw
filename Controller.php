@@ -25,9 +25,9 @@ class Controller
      * @param array $params
      * @return array|false|string|string[]
      */
-    public function render($view, $params = [])
+    public function render($view, $title = 'Hello, World!', $params = [])
     {
-        return Application::$app->router->renderView($view, $params);
+        return Application::$app->router->renderView($view, $title, $params);
     }
 
 }
