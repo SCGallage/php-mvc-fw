@@ -11,14 +11,11 @@ class SessionManagement implements SessionHandlerInterface
     private static SessionManagement $management;
     private \PDO $pdo;
 
-    public function __construct()
+    public function __construct($pdo)
     {
         self::$management = $this;
         session_set_save_handler(self::$management);
-        $this->pdo = new \PDO(
-            'mysql:host=localhost;port=3306;dbname=proj_test',
-            'root',
-            'root');
+        $this->pdo = $pdo;
         $this->check_session_table();
     }
 

@@ -26,14 +26,14 @@ class Application
     {
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
-        $this->management = new SessionManagement();
         $this->request = new Request();
         $this->response = new Response();
         $this->container = new Container();
         $this->router = new Router($this->request, $this->response);
-        $this->database = new Database();
+        $this->database = new Database($config);
+        $this->management = new SessionManagement($this->database->getConnection());
         $this->databaseService = new DatabaseService($this->database);
-        $this->auth = $this->container->get('core_fw\Authentication\AuthenticatorModule');
+        //$this->auth = $this->container->get('core_fw\Authentication\AuthenticatorModule');
     }
 
     /**

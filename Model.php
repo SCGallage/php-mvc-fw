@@ -64,7 +64,7 @@ class Model extends DatabaseService
 
     public function findAll()
     {
-        return $this->select($this->_tablename, '*', null);
+        return $this->select($this->_tablename, '*', null, DatabaseService::FETCH_ALL);
     }
     
     public function remove($data)
