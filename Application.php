@@ -1,11 +1,12 @@
 <?php
 
-namespace core_fw;
+namespace core;
 
-use core_fw\Authentication\AuthenticatorModule;
-use core_fw\di_container\Container;
-use core_fw\Sessions\SessionManagement;
-
+use core\authentication\AuthenticatorModule;
+use core\authentication\SecurityToken;
+use core\di_container\Container;
+use core\sessions\SessionManagement;
+//require(__DIR__."\authentication\AuthenticatorModule.php");
 class Application
 {
 
@@ -33,7 +34,7 @@ class Application
         $this->database = new Database($config);
         $this->management = new SessionManagement($this->database->getConnection());
         $this->databaseService = new DatabaseService($this->database);
-        //$this->auth = $this->container->get('core_fw\Authentication\AuthenticatorModule');
+        $this->auth = new AuthenticatorModule($this->database);
     }
 
     /**

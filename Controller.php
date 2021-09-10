@@ -1,10 +1,10 @@
 <?php
 
 
-namespace core_fw;
+namespace core;
 
 
-use core_fw\Application;
+use core\Application;
 
 class Controller
 {

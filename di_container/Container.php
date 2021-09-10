@@ -1,7 +1,7 @@
 <?php
 
-namespace core_fw\di_container;
-use core_fw\di_container\Exceptions\NotFoundException;
+namespace core\di_container;
+use core\di_container\exceptions\NotFoundException;
 use Psr\Container\ContainerInterface;
 use ReflectionClass;
 use ReflectionException;

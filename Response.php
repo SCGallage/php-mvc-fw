@@ -1,7 +1,7 @@
 <?php
 
 
-namespace core_fw;
+namespace core;
 
 
 class Response
@@ -12,5 +12,9 @@ class Response
      */
     public function setStatusCode(int $code){
         http_response_code($code);
+    }
+
+    public function setContentTypeJson() {
+        header('Content-Type: application/json; charset=utf-8');
     }
 }

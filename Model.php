@@ -2,8 +2,8 @@
 //require_once("DBService.php");
 //require_once("constants.php");
 
-namespace core_fw;
-use core_fw\DatabaseService;
+namespace core;
+use core\DatabaseService;
 use ReflectionClass;
 
 class Model extends DatabaseService
@@ -31,7 +31,7 @@ class Model extends DatabaseService
         $this->_tablename = end($class_name);
     }
 
-    public function override_table(string $tablename)
+    public function overrideTableName(string $tablename)
     {
         $this->_tablename = $tablename;
     }
@@ -55,10 +55,9 @@ class Model extends DatabaseService
 
     public function save($data)
     {
-        $class = new ReflectionClass($this);
-        $new_array = parent::array_map_properties($this->class, $data);
-        $columns_array = parent::insert_columns($new_array, 1);
-        parent::insert($this->_tablename, $columns_array);
+        $new_array = parent::mapDataToClassProperties(new ReflectionClass($this), $data);
+        $columns_array = parent::refactorDataForQuery($new_array, 1);
+        echo parent::insert($this->_tablename, $columns_array);
         //return $new_array;
     }
 
@@ -77,25 +76,4 @@ class Model extends DatabaseService
 
     }
 
-    public function customSelect()
-    {
-        $columns = ['name', 'age', 'email'];
-        $conditions = [
-            "name" => "Sanka",
-            "age" => 22,
-            "email" => "gallagesanka03@gmail.com"
-        ];
-        $this->select('users', $columns, $conditions);
-    }
-
-    public function customDelete()
-    {
-        $conditions = [
-            "name" => "Sanka",
-            "age" => 22,
-            "email" => "gallagesanka03@gmail.com"
-        ];
-
-        $this->delete('users', $conditions);
-    }
 }
