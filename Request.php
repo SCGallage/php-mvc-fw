@@ -1,7 +1,7 @@
 <?php
 
 
-namespace core_fw;
+namespace core;
 
 
 class Request
@@ -65,6 +65,11 @@ class Request
         }
 
         return $body;
+    }
+
+    public function get_file(): FileHandler
+    {
+        return new FileHandler();
     }
 
 }

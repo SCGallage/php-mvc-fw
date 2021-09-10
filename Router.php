@@ -1,6 +1,6 @@
 <?php
 
-namespace core_fw;
+namespace core;
 
 class Router
 {
@@ -54,10 +54,10 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {  // if callback is not found
             Application::$app->response->setStatusCode(404);
-            return $this->renderView("_404");
+            return $this->renderOnlyView("_404");
         }
         if (is_string($callback)) { //if callback is just a static page render view only
-            return $this->renderView($callback);
+            return $this->renderView($callback, title: "Hello World");
         }
         if (is_array($callback)) {
             Application::$app->controller = new $callback[0]();
@@ -72,7 +72,7 @@ class Router
      * @param array $params
      * @return array|false|string|string[]
      */
-    public function renderView($view, $title, $params = [])
+    public function renderView($view, $title, array $params = [])
     {
         $layoutContent = $this->layoutContent();
         $layoutContent = str_replace('{{title}}', $title, $layoutContent);
@@ -102,10 +102,10 @@ class Router
     /**
      * return the view and params
      * @param $view
-     * @param $params
+     * @param array $params
      * @return false|string
      */
-    protected function renderOnlyView($view, $params)
+    protected function renderOnlyView($view, array $params = [])
     {
         foreach ($params as $key => $value) {
             $$key = $value;

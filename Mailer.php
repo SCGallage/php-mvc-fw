@@ -1,6 +1,6 @@
 <?php
 
-namespace core_fw;
+namespace core;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -13,10 +13,17 @@ class Mailer
     /**
      * Mailer constructor.
      */
-    public function __construct(PHPMailer $mail)
+    /*public function __construct(PHPMailer $mail)
     {
 
         $this->mail = $mail;
+
+    }*/
+
+    public function __construct()
+    {
+
+        $this->mail = new PHPMailer();
 
     }
 

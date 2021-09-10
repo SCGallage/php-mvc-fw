@@ -1,6 +1,6 @@
 <?php
 
-namespace core_fw;
+namespace core;
 
 use Dotenv\Dotenv;
 

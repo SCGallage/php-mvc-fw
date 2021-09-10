@@ -1,8 +1,8 @@
 <?php
 
-namespace core_fw\Sessions;
+namespace core\sessions;
 
-use core_fw\Application;
+use core\Application;
 use SessionHandlerInterface;
 
 class SessionManagement implements SessionHandlerInterface
@@ -115,6 +115,11 @@ class SessionManagement implements SessionHandlerInterface
     public function set_session_data(string $key, $value)
     {
         $_SESSION[$key] = $value;
+    }
+
+    public function get_session_data(string $key)
+    {
+        return $_SESSION[$key];
     }
 
     public function unset_variable(string $key)

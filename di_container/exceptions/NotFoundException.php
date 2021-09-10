@@ -1,6 +1,6 @@
 <?php
 
-namespace core_fw\di_container\Exceptions;
+namespace core\di_container\exceptions;
 use Exception;
 use Psr\Container\NotFoundExceptionInterface;
 
